@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Taketori Monogatari</title>
+    <style>
+        .correct-answer {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Taketori Quiz</h1>
+
+    <form id="quizForm">
+        <!-- Frage 1 -->
+        <h3>Frage 1: Was fand Taketori im Bambus?</h3>
+        <label><input type="radio" name="q1" value="A"> A) Ein kleines Mädchen</label><br>
+        <label><input type="radio" name="q1" value="B"> B) Einen leuchtenden Stein</label><br>
+        <label><input type="radio" name="q1" value="C"> C) Ein heiliges Schwert</label><br>
+        <label><input type="radio" name="q1" value="D"> D) Ein großes Ei</label><br>
+        <label><input type="radio" name="q1" value="E"> E) Einen goldenen Drachen</label><br>
+        <p id="q1-correct" class="correct-answer"></p>
+
+        <!-- Frage 2 -->
+        <h3>Frage 2: Was verlangte Kaguya-hime vom ersten Freier?</h3>
+        <label><input type="radio" name="q2" value="A"> A) Den leuchtenden Stein vom Drachen</label><br>
+        <label><input type="radio" name="q2" value="B"> B) Das heilige Feuer aus dem Vulkan</label><br>
+        <label><input type="radio" name="q2" value="C"> C) Einen magischen Spiegel</label><br>
+        <label><input type="radio" name="q2" value="D"> D) Eine Blume vom höchsten Berg</label><br>
+        <label><input type="radio" name="q2" value="E"> E) Den Schatz des Meereskönigs</label><br>
+        <p id="q2-correct" class="correct-answer"></p>
+
+        <!-- Frage 3 -->
+        <h3>Frage 3: Warum wollte Kaguya-hime keinen der Freier heiraten?</h3>
+        <label><input type="radio" name="q3" value="A"> A) Sie hatte jemanden anderen schon gewählt</label><br>
+        <label><input type="radio" name="q3" value="B"> B) Sie musste bald in ihre Heimat zurückkehren</label><br>
+        <label><input type="radio" name="q3" value="C"> C) Sie wollte für immer bei Taketori bleiben</label><br>
+        <label><input type="radio" name="q3" value="D"> D) Sie fand die Freier nicht schön genug</label><br>
+        <label><input type="radio" name="q3" value="E"> E) Sie liebte einen Mann aus der Mondwelt</label><br>
+        <p id="q3-correct" class="correct-answer"></p>
+
+        <!-- Frage 4 -->
+        <h3>Frage 4: Was offenbarte Kaguya-hime Taketori und seiner Frau?</h3>
+        <label><input type="radio" name="q4" value="A"> A) Sie sei ein Kind der Sonne.</label><br>
+        <label><input type="radio" name="q4" value="B"> B) Sie komme von der Mondwelt.</label><br>
+        <label><input type="radio" name="q4" value="C"> C) Sie habe magische Kräfte.</label><br>
+        <label><input type="radio" name="q4" value="D"> D) Sie müsse einen Drachen besiegen.</label><br>
+        <label><input type="radio" name="q4" value="E"> E) Sie könne den Mond heller machen.</label><br>
+        <p id="q4-correct" class="correct-answer"></p>
+
+        <!-- Frage 5 -->
+        <h3>Frage 5: Wie reagierten Taketori und seine Frau, als Kaguya-hime gehen musste?</h3>
+        <label><input type="radio" name="q5" value="A"> A) Sie waren glücklich und stolz.</label><br>
+        <label><input type="radio" name="q5" value="B"> B) Sie weinten und waren traurig.</label><br>
+        <label><input type="radio" name="q5" value="C"> C) Sie beschlossen, mit ihr zu gehen.</label><br>
+        <label><input type="radio" name="q5" value="D"> D) Sie schickten einen Freier, um sie zurückzuholen.</label><br>
+        <label><input type="radio" name="q5" value="E"> E) Sie versuchten, die Mondwesen zu bekämpfen.</label><br>
+        <p id="q5-correct" class="correct-answer"></p>
+
+        <br>
+        <input type="button" value="Ergebnisse anzeigen" onclick="calculateScore()">
+    </form>
+
+    <h2 id="score"></h2>
+
+    <script>
+        function calculateScore() {
+            // Richtige Antworten
+            const correctAnswers = {
+                q1: 'A',
+                q2: 'A',
+                q3: 'B',
+                q4: 'B',
+                q5: 'B'
+            };
+
+            let score = 0;
+            const form = document.forms['quizForm'];
+
+            // Durch alle Fragen iterieren
+            for (let question in correctAnswers) {
+                const userAnswer = form[question].value;
+                const correctAnswer = correctAnswers[question];
+
+                // Richtig oder falsch überprüfen und Punkt hinzufügen
+                if (userAnswer === correctAnswer) {
+                    score++;
+                }
+
+                // Richtige Antwort anzeigen
+                document.getElementById(`${question}-correct`).innerText = `Die richtige Antwort ist: ${correctAnswer}`;
+            }
+
+            // Score anzeigen
+            document.getElementById('score').innerText = `Dein Ergebnis: ${score}/5`;
+        }
+    </script>
+</body>
+</html>
